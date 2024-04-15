@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Boutique</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
+    <h1>Boutique</h1>
+    <div id="pointsDeJeu">Points de Jeu: <span id="points">0</span></div>
+    <div id="elements">
+        <h2>Éléments de Production</h2>
+        <button onclick="acheterElement('Clics Rapides')">Clics Rapides - Coût: 100</button>
+        <button onclick="acheterElement('Machine à Points')">Machine à Points - Coût: 500</button>
+        <button onclick="acheterElement('Usine de Prodiges')">Usine de Prodiges - Coût: 2000</button>
+    </div>
+    <div id="bonus">
+        <h2>Bonus d'Amélioration</h2>
+        <button onclick="acheterBonus('Accélérateur de Clics')">Accélérateur de Clics - Coût: 200</button>
+        <button onclick="acheterBonus('Multiplier x2')">Multiplier x2 - Coût: 500</button>
+        <button onclick="acheterBonus('Supercharge de Prodiges')">Supercharge de Prodiges - Coût: 1000</button>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
