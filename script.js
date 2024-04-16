@@ -1,9 +1,9 @@
 function acheterElement(nomElement) {
-    // Vérifier si l'utilisateur a assez de points pour acheter l'élément
+
     if (pointsDeJeu >= 100) {
-        // Logique pour acheter un élément
+
         alert("Vous avez acheté " + nomElement);
-        // Mettre à jour les points de jeu
+        
         pointsDeJeu -= 100;
         document.getElementById("points").innerText = pointsDeJeu;
     } else {
