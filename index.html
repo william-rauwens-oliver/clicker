@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker Undertale</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/Boutique.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Idle Clicker Undertale</h1>
+        <p id="cadran">Score: <span id="gold">0</span></p>
+        <button id="clickButton"><img src="/assets/img/flower.png" alt=""></button>
+        <button id="resetButton"><img src="/assets/img/restart.svg" alt=""></button>
+
+    </div>
+    <div class="cadre_boutique">
+        <h1>Shop</h1>
+        <h2>Éléments de Production</h2>
+        <div id="elements">
+            <button onclick="acheterElement('Clics Rapides')">Clics Rapides <br> Coût: 100</button>
+            <button onclick="acheterElement('Machine à Points')">Machine à Points <br> Coût: 500</button>
+            <button onclick="acheterElement('Usine de Prodiges')">Usine de Prodiges <br> Coût: 2000</button>
+        </div>
+        <h2>Bonus d'Amélioration</h2>
+        <div id="bonus">
+            <button onclick="acheterBonus('Accélérateur de Clics')">Accélérateur de Clics <br> Coût: 200</button>
+            <button onclick="acheterBonus('Multiplier x2')">Multiplier x2 <br> Coût: 500</button>
+            <button onclick="acheterBonus('Supercharge de Prodiges')">Supercharge de Prodiges <br> Coût: 1000</button>
+        </div>
+    </div>
+
+    <script src="js/Boutique.js"></script>
+</body>
+
+</html>
