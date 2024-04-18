@@ -7,7 +7,13 @@ body {
     height: 100vh;
     background-color: #f0f0f0;
 }
-#clickable-element {
-    padding: 20px;
+#clickable-element, #remove-points-btn {
+    background-color: lightblue;
+    padding: 10px 20px;
+    margin: 10px;
     cursor: pointer;
+}
+#error-message {
+    color: red;
+    font-weight: bold;
 }
