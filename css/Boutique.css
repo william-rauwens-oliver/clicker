@@ -1,0 +1,64 @@
+h1 {
+    text-align: center;
+}
+
+#pointsDeJeu {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 8px 10px;
+    background-color: #292828;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #141414;
+    transition: 100ms;
+}
+button:active{
+    background-color: rgb(77, 80, 30);
+}
+.cadre_boutique{
+    display: flex;
+    flex-direction: column;
+    background-image: url(/assets/img/Cadran.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 600px;
+    padding-bottom: 80px;
+    background-position-x: center;
+    background-position-y: center;
+}
+.cadre_boutique>div{
+    text-align: center;
+    padding: 8px;
+}
+.cadre_boutique>h2{
+    text-align: center;
+}
+#elements #bonus {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    align-items: center;
+}
+#elements{
+    margin-bottom: 32px;
+}
+
+@media (max-width: 900px) {
+    .cadre_boutique{
+        display: none;
+    }
+}
+h1{
+    margin: 20px;
+}
+h2{
+    margin: 4px;
+}

@@ -1,19 +1,62 @@
 body {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    height: 100vh;
+    background-image: url(/assets/img/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Pixel';
+    position: relative;
+    color: white;
+    background-position-x: center;
+    background-position-y: center;
+}
+@font-face {
+    font-family: 'Pixel';
+    src: url('/font/Pixel.woff2') format('woff2'),
+
+}
+
+#clickButton {
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 50ms ease-in-out;
+}
+
+#clickButton:active {
+    transform: translate(-50%, -50%) scale(0.9);
+}
+
+.container {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
 }
-#clickable-element, #remove-points-btn {
-    background-color: lightblue;
-    padding: 10px 20px;
-    margin: 10px;
+
+#cadran {
+    position: absolute;
+    background-image: url(/assets/img/cadran.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding: 100px;
+    top: 10px;
+    right: 10px;
+    z-index: -1;
+    background-position: center;
+    font-size: 32px;
+}
+#resetButton{
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+    position: absolute;
     cursor: pointer;
-}
-#error-message {
-    color: red;
-    font-weight: bold;
+    bottom: 10px;
+    right: 10px;
 }
