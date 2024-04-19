@@ -10,13 +10,13 @@ const pointsDisplay = document.getElementById('cadran');
 
 // Fonction pour mettre à jour l'affichage des points
 function updatecadran() {
-    pointsDisplay.textContent = 'Points: ' + points;
+    pointsDisplay.textContent = 'Score: ' + pointsDeJeu;
 }
 
 // Fonction pour gérer les clics sur la fleur
 function clicSurFleur() {
-    points += clicsParClick;
-    updatecadran();
+    pointsDeJeu += clicsParClick;
+    document.getElementById("points").innerText = pointsDeJeu;
 }
 
 // Écouteur d'événement pour les clics sur la fleur
@@ -24,13 +24,16 @@ document.getElementById('clickButton').addEventListener('click', clicSurFleur);
 
 // Fonction pour acheter un élément
 function acheterElement(nomElement) {
-    if (points >= 100) {
+    if (pointsDeJeu >= 100) {
         alert("Vous avez acheté " + nomElement);
-        points -= 100;
-        document.getElementById("points").innerText = points;
+        pointsDeJeu -= 100;
+        document.getElementById("points").innerText = pointsDeJeu;
 
         if (nomElement === "Clics Rapides") {
-            clicsParClick = 2; // Modifier clicsParClick pour qu'il soit égal à 2
+            clicsParClick = 2;
+            pointsDeJeu *= 2;
+            document.getElementById("points").innerText = pointsDeJeu;
+            demarrerJeuAuto();
         } else if (nomElement === "Machine à Points") {
             clicsAuto = 1;
             if (!intervalID) {
@@ -51,10 +54,10 @@ function acheterElement(nomElement) {
 function acheterBonus(nomBonus) {
     if (pointsDeJeu >= 200) {
         alert("Vous avez acheté " + nomBonus);
-        points -= 200;
-        pointsDeJeu += 200; // Mettre à jour les points de jeu
-        document.getElementById("points").innerText = points;
-        updatecadran(); // Mettre à jour l'affichage des points
+        pointsDeJeu -= 200;
+        pointsDeJeu += 200;
+        document.getElementById("points").innerText = pointsDeJeu;
+        updatecadran();
 
         if (nomBonus === "Accélérateur de Clics") {
             clicsParClick *= 3;
@@ -68,21 +71,15 @@ function acheterBonus(nomBonus) {
     }
 }
 
-// Fonction pour gagner des points manuellement
-function gagnerPoints() {
-    pointsDeJeu += clicsParClick;
-    document.getElementById("points").innerText = pointsDeJeu;
-}
-
 // Fonction pour gagner des points automatiquement
 function gagnerPointsAuto() {
-    pointsDeJeu += clicsAuto;
+    pointsDeJeu += 10;
     document.getElementById("points").innerText = pointsDeJeu;
 }
 
 // Fonction pour démarrer le jeu automatique
 function demarrerJeuAuto() {
     if (!intervalID) {
-        intervalID = setInterval(gagnerPointsAuto, 1000);
+        intervalID = setInterval(gagnerPointsAuto, 5000);
     }
 }
