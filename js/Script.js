@@ -1,38 +1,85 @@
-// Initial state
-let essences = 0;
-let elements = [];
-let bonuses = [];
+// Initialisation des variables
+let points = 0;
+let pointsDeJeu = 0;
+let clicsParClick = 1;
+let clicsAuto = 0;
+let intervalID;
 
-// Load state from localStorage
-if(localStorage.getItem("alchemistSave")) {
-    const saveData = JSON.parse(localStorage.getItem("alchemistSave"));
-    essences = saveData.essences;
-    elements = saveData.elements;
-    bonuses = saveData.bonuses;
+// Récupération de l'élément d'affichage des points
+const pointsDisplay = document.getElementById('cadran');
+
+// Fonction pour mettre à jour l'affichage des points
+function updatecadran() {
+    pointsDisplay.textContent = 'Score: ' + pointsDeJeu;
 }
 
-// Update display
-function updateDisplay() {
-    document.getElementById("essenceDisplay").innerText = `Essences: ${essences}`;
-    document.getElementById("elementsContainer").innerHTML = elements.map(element => `<div class="element">${element.name} (${element.cost} Essences)</div>`).join("");
+// Fonction pour gérer les clics sur la fleur
+function clicSurFleur() {
+    pointsDeJeu += clicsParClick;
+    document.getElementById("points").innerText = pointsDeJeu;
 }
 
-// Click to alchemize
-function clickAlchemy() {
-    essences++;
-    updateDisplay();
-    // Ajoute la classe "shake" au bouton pour déclencher l'animation
-    document.getElementById("alchemyButton").classList.add("shake");
-    // Supprime la classe "shake" après un court délai pour arrêter l'animation
-    setTimeout(function() {
-        document.getElementById("alchemyButton").classList.remove("shake");
-    }, 500); // 500 ms correspond à la durée de l'animation définie dans le CSS
+// Écouteur d'événement pour les clics sur la fleur
+document.getElementById('clickButton').addEventListener('click', clicSurFleur);
+
+// Fonction pour acheter un élément
+function acheterElement(nomElement) {
+    if (pointsDeJeu >= 100) {
+        alert("Vous avez acheté " + nomElement);
+        pointsDeJeu -= 100;
+        document.getElementById("points").innerText = pointsDeJeu;
+
+        if (nomElement === "Clics Rapides") {
+            clicsParClick = 2;
+            pointsDeJeu *= 2;
+            document.getElementById("points").innerText = pointsDeJeu;
+            demarrerJeuAuto();
+        } else if (nomElement === "Machine à Points") {
+            clicsAuto = 1;
+            if (!intervalID) {
+                intervalID = setInterval(gagnerPointsAuto, 1000);
+            }
+        } else if (nomElement === "Usine de Prodiges") {
+            clicsAuto += 2;
+            if (!intervalID) {
+                intervalID = setInterval(gagnerPointsAuto, 1000);
+            }
+        }
+    } else {
+        alert("Vous n'avez pas assez de points pour acheter cet élément.");
+    }
 }
 
-// Save state to localStorage every 30 seconds
-setInterval(() => {
-    localStorage.setItem("alchemistSave", JSON.stringify({ essences, elements, bonuses }));
-}, 30000);
+// Fonction pour acheter un bonus
+function acheterBonus(nomBonus) {
+    if (pointsDeJeu >= 200) {
+        alert("Vous avez acheté " + nomBonus);
+        pointsDeJeu -= 200;
+        pointsDeJeu += 200;
+        document.getElementById("points").innerText = pointsDeJeu;
+        updatecadran();
 
-// Initial display update
-updateDisplay();
+        if (nomBonus === "Accélérateur de Clics") {
+            clicsParClick *= 3;
+        } else if (nomBonus === "Multiplier x2") {
+            clicsAuto *= 2;
+        } else if (nomBonus === "Supercharge de Prodiges") {
+            clicsAuto += 5;
+        }
+    } else {
+        alert("Vous n'avez pas assez de points pour acheter ce bonus.");
+    }
+}
+
+// Fonction pour gagner des points automatiquement
+function gagnerPointsAuto() {
+    pointsDeJeu += 10;
+    document.getElementById("points").innerText = pointsDeJeu;
+}
+
+// Fonction pour démarrer le jeu automatique
+function demarrerJeuAuto() {
+    if (!intervalID) {
+        intervalID = setInterval(gagnerPointsAuto, 5000);
+    }
+}
